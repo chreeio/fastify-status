@@ -77,11 +77,9 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onRequest(request: any, reply: any, next: any) {
-    if (state.status !== 'ok') {
+    if (state.status === Status.FAILING) {
       if (!isRouteExposed || request.url !== routePath) {
-        request.log.warning(
-          'Cannot serve request because the service is degraded (erroneous healthchecks are present).'
-        )
+        request.log.warning('Cannot serve request because the service is failing.')
         reply.code(SERVICE_UNAVAILABLE)
         return
       }
