@@ -28,9 +28,10 @@ interface State {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-export default function FastifyStatus(fastify: any, options: Partial<FastifyStatusOptions>): void {
+export default function FastifyStatus(fastify: any, options: Partial<FastifyStatusOptions>, next: any): void {
   const state: Partial<State> = {
     version: options.version,
+    startedAt: startedAt(),
   }
 
   const isRouteExposed = options?.route?.expose
@@ -48,7 +49,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
       async handler(request: any, reply: any) {
         request.log.info('Fastify Status endpoint called.')
 
-        if (options?.health?.updateInterval) {
+        if (!options?.health?.updateInterval || !state.status) {
           await performHealthcheck()
         }
 
@@ -56,7 +57,9 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
           await resolveCustomProperties()
         }
 
-        reply.status(OK).json(state)
+        state.uptime = uptime()
+
+        reply.code(OK).send(state)
       },
     })
   }
@@ -79,7 +82,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
         request.log.warning(
           'Cannot serve request because the service is degraded (erroneous healthchecks are present).'
         )
-        reply.status(SERVICE_UNAVAILABLE)
+        reply.code(SERVICE_UNAVAILABLE)
         return
       }
     }
@@ -87,10 +90,27 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
     next()
   }
 
-  function onClose() {
+  next()
+
+  function uptime() {
+    return Math.floor(process.uptime())
+  }
+
+  function startedAt() {
+    const currentSeconds = Math.floor(Date.now() / 1000)
+
+    const startedSeconds = currentSeconds - uptime()
+
+    return new Date(startedSeconds * 1000)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function onClose(_fastify: any, done: any) {
     if (healthcheckTimer) {
       clearInterval(healthcheckTimer)
     }
+
+    done()
   }
 
   async function performHealthcheck() {
