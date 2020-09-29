@@ -22,15 +22,6 @@
                     "pnpm-lock.yaml"
                 ]
             }
-        },
-        "coverage": {
-            "name": "Unit Test Coverage",
-            "description": "Code coverage of the unit tests.",
-            "type": "coverage",
-            "configuration": {
-                "lcovReportDirectory": "coverage/lcov-report",
-                "lcovInfoFile": "coverage/lcov.info"
-            }
         }
     }
 }
