@@ -4,4 +4,5 @@ export interface CustomPropertyFunction {
 
 export type CustomProperty = unknown | CustomPropertyFunction | CustomPropertyObject
 
-export type CustomPropertyObject = Record<string, CustomProperty>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CustomPropertyObject extends Record<string, CustomProperty> {}
