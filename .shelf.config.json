@@ -1,0 +1,36 @@
+{
+    "repository": {
+        "name": "fastify-status",
+        "description": "Fastify plugin exposing overall server status (including version and health)."
+    },
+    "entries": {
+        "typedoc": {
+            "name": "TypeDoc",
+            "description": "TypeScript documentation generated using TypeDoc.",
+            "type": "documentation",
+            "configuration": {
+                "directory": "generated-docs"
+            }
+        },
+        "manifest": {
+            "name": "Manifest Files",
+            "description": "package.json and pnpm-lock.yaml.",
+            "type": "manifest",
+            "configuration": {
+                "files": [
+                    "package.json",
+                    "pnpm-lock.yaml"
+                ]
+            }
+        },
+        "coverage": {
+            "name": "Unit Test Coverage",
+            "description": "Code coverage of the unit tests.",
+            "type": "coverage",
+            "configuration": {
+                "lcovReportDirectory": "coverage/lcov-report",
+                "lcovInfoFile": "coverage/lcov.info"
+            }
+        }
+    }
+}

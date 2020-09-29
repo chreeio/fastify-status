@@ -1,0 +1,77 @@
+{
+  "name": "@chreeio/fastify-status",
+  "version": "1.0.0",
+  "description": "Fastify plugin exposing overall server status (including version and health).",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && tsc",
+    "preinstall": "npx only-allow pnpm",
+    "test": "jest --passWithNoTests --coverage",
+    "test:watch": "jest --passWithNoTests --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "docs": "typedoc --out generated-docs src"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "(/test/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "packageJson": "package.json"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chreeio/fastify-status.git"
+  },
+  "keywords": [
+    "liquid",
+    "template",
+    "templating"
+  ],
+  "author": "Chree Development Team",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chreeio/fastify-status/issues"
+  },
+  "homepage": "https://github.com/chreeio/fastify-status#readme",
+  "devDependencies": {
+    "@commitlint/cli": "9.0.1",
+    "@commitlint/config-conventional": "9.0.1",
+    "@types/jest": "26.0.4",
+    "@typescript-eslint/eslint-plugin": "3.6.1",
+    "@typescript-eslint/parser": "3.6.1",
+    "eslint": "7.4.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "husky": "4.2.5",
+    "jest": "26.1.0",
+    "prettier": "2.0.5",
+    "ts-jest": "26.1.1",
+    "ts-node": "8.10.2",
+    "typedoc": "0.17.8",
+    "typescript": "3.9.6"
+  },
+  "dependencies": {
+    "fastify-plugin": "2.3.4"
+  }
+}

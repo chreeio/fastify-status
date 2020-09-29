@@ -1,0 +1,193 @@
+name: Build Master
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+      
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+      
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+
+    - name: Lint
+      run: |
+        pnpm run lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+        
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+        
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+
+    - name: Run Tests
+      run: |
+        pnpm run test
+
+    - name: Checkout the Shelf Push Action
+      uses: actions/checkout@v2
+      with:
+        repository: chreeio/shelf-push-action
+        ref: master
+        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
+        path: ./shelf-push-action
+
+    - name: Shelf Push Coverage
+      uses: ./shelf-push-action
+      with:
+        entry: coverage
+        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
+        commitMessage: Updated fastify-status coverage to version ${{ github.sha }} 
+        version: master
+  
+  build:
+    needs: [lint, test]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+        
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+        
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+
+    - name: Build
+      run: |
+        pnpm run build
+  
+  docs:
+    needs: build
+    if: github.event_name != 'pull_request'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+        
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+        
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+
+    - name: Build the Documentation
+      run: |
+        pnpm run docs
+
+    - name: Checkout the gh-pages branch
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        path: ./gh-pages
+
+    - name: Update the documentation
+      # The last two steps are not strictly necessary, but they
+      # make the flow easier to follow (we checkout and push the gh-pages folder).
+      run: |
+        mv ./gh-pages/.git ./generated-docs/.git
+        rm -rf ./gh-pages
+        mv ./generated-docs ./gh-pages
+
+    - name: Push gh-pages
+      uses: EndBug/add-and-commit@v4
+      with:
+        cwd: ./gh-pages
+        ref: gh-pages
+        message: Updated the documentation to version ${{ github.sha }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Reset Generated Documentation
+      run: |
+        rm -rf ./gh-pages/.git
+        mv ./gh-pages ./generated-docs
+
+    - name: Checkout the Shelf Push Action
+      uses: actions/checkout@v2
+      with:
+        repository: chreeio/shelf-push-action
+        ref: master
+        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
+        path: ./shelf-push-action
+
+    - name: Shelf Push TypeDoc
+      uses: ./shelf-push-action
+      with:
+        entry: typedoc
+        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
+        commitMessage: Updated fastify-status typedoc to version ${{ github.sha }} 
+        version: master
+
+    - name: Shelf Push Manifest
+      uses: ./shelf-push-action
+      with:
+        entry: manifest
+        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
+        commitMessage: Updated fastify-status manifest to version ${{ github.sha }} 
+        version: master

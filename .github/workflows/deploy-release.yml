@@ -1,0 +1,76 @@
+name: Deploy Release
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+      
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+      
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+
+    - name: Lint
+      run: |
+        pnpm run lint
+
+    - name: Run Tests
+      run: |
+        pnpm run test
+
+  deploy-to-ghpr:
+    needs: [test-and-lint]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the Repository
+      uses: actions/checkout@v2
+      
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@chreeio'
+        
+    - name: Install pnpm
+      run: |
+        npm i pnpm -g
+      
+    - name: Install dependencies
+      run: |
+        pnpm i
+      env:
+        CI: true
+    
+    - name: Build
+      run: |
+        pnpm run build
+
+    - name: Deploy to the GitHub Package registry
+      run: |
+        pnpm publish --no-git-checks
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
