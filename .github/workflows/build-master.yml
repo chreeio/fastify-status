@@ -62,22 +62,6 @@ jobs:
     - name: Run Tests
       run: |
         pnpm run test
-
-    - name: Checkout the Shelf Push Action
-      uses: actions/checkout@v2
-      with:
-        repository: chreeio/shelf-push-action
-        ref: master
-        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
-        path: ./shelf-push-action
-
-    - name: Shelf Push Coverage
-      uses: ./shelf-push-action
-      with:
-        entry: coverage
-        token: ${{ secrets.CHREE_USE_SHELF_TOKEN }}
-        commitMessage: Updated fastify-status coverage to version ${{ github.sha }} 
-        version: master
   
   build:
     needs: [lint, test]
