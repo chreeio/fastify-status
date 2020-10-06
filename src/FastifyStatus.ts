@@ -10,14 +10,16 @@ const OK = 200
 const DEFAULT_STATUS_CHECKER: StatusCheckerFunction = function defaultStatusChecker(
   healthcheckResults: Record<string, Status>
 ): Promise<Status> {
-  const isDegraded = false
+  let overallStatus = Status.OK
   for (const status of Object.values(healthcheckResults)) {
     if (status == Status.FAILING) {
       return Promise.resolve(Status.FAILING)
+    } else if (status == Status.DEGRADED) {
+      overallStatus = Status.DEGRADED
     }
   }
 
-  return Promise.resolve(isDegraded ? Status.DEGRADED : Status.OK)
+  return Promise.resolve(overallStatus)
 }
 
 interface State {
