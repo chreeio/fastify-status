@@ -72,7 +72,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
 
     fastify.addHook('onClose', onClose)
 
-    if (options?.health?.unavailableWhenDegraded) {
+    if (options?.health?.unavailableWhenFailing) {
       fastify.addHook('onRequest', onRequest)
     }
   }

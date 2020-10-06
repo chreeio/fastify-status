@@ -10,7 +10,7 @@ export interface FastifyStatusOptions {
   }>
   health: Partial<{
     updateInterval: number | undefined
-    unavailableWhenDegraded: boolean
+    unavailableWhenFailing: boolean
     checks: Record<string, HealthcheckFunction>
     statusChecker: StatusCheckerFunction
   }>
