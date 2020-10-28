@@ -1,6 +1,7 @@
 import { CustomPropertyObject } from './CustomProperty'
 import { HealthcheckFunction } from './HealthcheckFunction'
 import { StatusCheckerFunction } from './StatusCheckerFunction'
+import { FailingStatusRequestHook } from './FailingStatusRequestHook'
 
 export interface FastifyStatusOptions {
   route: Partial<{
@@ -14,6 +15,7 @@ export interface FastifyStatusOptions {
     checks: Record<string, HealthcheckFunction>
     statusChecker: StatusCheckerFunction
   }>
+  failingStatusRequestHook: FailingStatusRequestHook
   version: Record<string, string>
   customProperties: CustomPropertyObject
 }

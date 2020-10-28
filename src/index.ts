@@ -7,6 +7,7 @@ export * from './FastifyStatusOptions'
 export * from './HealthcheckFunction'
 export * from './Status'
 export * from './StatusCheckerFunction'
+export * from './FailingStatusRequestHook'
 
 export default fp(FastifyStatus, {
   name: 'fastify-status',
