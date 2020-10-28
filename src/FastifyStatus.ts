@@ -84,9 +84,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
 
     fastify.addHook('onClose', onClose)
 
-    if (options.health?.unavailableWhenFailing) {
-      fastify.addHook('onRequest', onRequest)
-    }
+    fastify.addHook('onRequest', onRequest)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
