@@ -45,12 +45,27 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
     startedAt: startedAt(),
   }
 
-  const isRouteExposed = options.route?.expose
+  const shouldExposeRoute = options.route?.expose
   const routePath = options.route?.path || DEFAULT_STATUS_PATH
   const failingStatusRequestHook = options.failingStatusRequestHook || DEFAULT_FAILING_STATUS_REQUEST_HOOK
   const overallStatusCalculator = options.health?.overallStatusCalculator || DEFAULT_OVERALL_STATUS_CALCULATOR
 
-  if (isRouteExposed) {
+  if (shouldExposeRoute) {
+    exposeStatusEndpoint()
+  }
+
+  let healthcheckTimer: NodeJS.Timeout | undefined
+  if (options.health?.updateInterval) {
+    healthcheckTimer = setInterval(performHealthcheck, options.health.updateInterval)
+
+    fastify.addHook('onClose', onClose)
+
+    fastify.addHook('onRequest', onRequest)
+  }
+
+  next()
+
+  function exposeStatusEndpoint() {
     fastify.log.info('Exposing Fastify Status at %s', routePath)
 
     const customOptions = options.route?.customOptions || {}
@@ -78,27 +93,16 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
     })
   }
 
-  let healthcheckTimer: NodeJS.Timeout | undefined
-  if (options.health?.updateInterval) {
-    healthcheckTimer = setInterval(performHealthcheck, options.health.updateInterval)
-
-    fastify.addHook('onClose', onClose)
-
-    fastify.addHook('onRequest', onRequest)
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onRequest(request: any, reply: any, next: any) {
     if (state.status === Status.FAILING) {
-      if (!isRouteExposed || request.url !== routePath) {
+      if (!shouldExposeRoute || request.url !== routePath) {
         failingStatusRequestHook(request, reply, next)
       }
     } else {
       next()
     }
   }
-
-  next()
 
   function uptime() {
     return Math.floor(process.uptime())
