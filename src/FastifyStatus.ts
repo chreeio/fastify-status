@@ -12,8 +12,10 @@ const DEFAULT_FAILING_STATUS_REQUEST_HOOK: FailingStatusRequestHook = async func
   request: any,
   reply: any
 ) {
-  request.log.warning('Cannot serve request because the service is failing.')
+  request.log.warn('Cannot serve request because the service is failing.')
   reply.code(SERVICE_UNAVAILABLE)
+
+  throw new Error('Service Unavailable')
 }
 
 const DEFAULT_OVERALL_STATUS_CALCULATOR: OverallStatusCalculatorFunction = function defaultOverallStatusCalculator(
@@ -94,13 +96,11 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function onRequest(request: any, reply: any, next: any) {
+  async function onRequest(request: any, reply: any) {
     if (state.status === Status.FAILING) {
       if (!shouldExposeRoute || request.url !== routePath) {
-        failingStatusRequestHook(request, reply, next)
+        await failingStatusRequestHook(request, reply)
       }
-    } else {
-      next()
     }
   }
 
