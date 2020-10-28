@@ -85,6 +85,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_fastifystatusoptions_.fastifystatusoptions.html#customproperties" class="tsd-kind-icon">custom<wbr>Properties</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_fastifystatusoptions_.fastifystatusoptions.html#failingstatusrequesthook" class="tsd-kind-icon">failing<wbr>Status<wbr>Request<wbr>Hook</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_fastifystatusoptions_.fastifystatusoptions.html#health" class="tsd-kind-icon">health</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_fastifystatusoptions_.fastifystatusoptions.html#route" class="tsd-kind-icon">route</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_fastifystatusoptions_.fastifystatusoptions.html#version" class="tsd-kind-icon">version</a></li>
@@ -101,7 +102,17 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Properties<span class="tsd-signature-symbol">:</span> <a href="_customproperty_.custompropertyobject.html" class="tsd-signature-type">CustomPropertyObject</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/4a14077/src/FastifyStatusOptions.ts#L18">FastifyStatusOptions.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/e3db91d/src/FastifyStatusOptions.ts#L20">FastifyStatusOptions.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="failingstatusrequesthook" class="tsd-anchor"></a>
+					<h3>failing<wbr>Status<wbr>Request<wbr>Hook</h3>
+					<div class="tsd-signature tsd-kind-icon">failing<wbr>Status<wbr>Request<wbr>Hook<span class="tsd-signature-symbol">:</span> <a href="_failingstatusrequesthook_.failingstatusrequesthook.html" class="tsd-signature-type">FailingStatusRequestHook</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/e3db91d/src/FastifyStatusOptions.ts#L18">FastifyStatusOptions.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">health<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>checks<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="_healthcheckfunction_.healthcheckfunction.html" class="tsd-signature-type">HealthcheckFunction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>statusChecker<span class="tsd-signature-symbol">: </span><a href="_statuscheckerfunction_.statuscheckerfunction.html" class="tsd-signature-type">StatusCheckerFunction</a><span class="tsd-signature-symbol">; </span>unavailableWhenFailing<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>updateInterval<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/4a14077/src/FastifyStatusOptions.ts#L11">FastifyStatusOptions.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/e3db91d/src/FastifyStatusOptions.ts#L12">FastifyStatusOptions.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -121,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>customOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>expose<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/4a14077/src/FastifyStatusOptions.ts#L6">FastifyStatusOptions.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/e3db91d/src/FastifyStatusOptions.ts#L7">FastifyStatusOptions.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -131,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/4a14077/src/FastifyStatusOptions.ts#L17">FastifyStatusOptions.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/e3db91d/src/FastifyStatusOptions.ts#L19">FastifyStatusOptions.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,6 +156,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_customproperty_.html">&quot;<wbr>Custom<wbr>Property&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_failingstatusrequesthook_.html">&quot;<wbr>Failing<wbr>Status<wbr>Request<wbr>Hook&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_fastifystatus_.html">&quot;<wbr>Fastify<wbr>Status&quot;</a>
@@ -175,6 +189,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_fastifystatusoptions_.fastifystatusoptions.html#customproperties" class="tsd-kind-icon">custom<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_fastifystatusoptions_.fastifystatusoptions.html#failingstatusrequesthook" class="tsd-kind-icon">failing<wbr>Status<wbr>Request<wbr>Hook</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_fastifystatusoptions_.fastifystatusoptions.html#health" class="tsd-kind-icon">health</a>
