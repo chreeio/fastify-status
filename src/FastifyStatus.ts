@@ -1,4 +1,5 @@
 import { CustomPropertyObject } from './CustomProperty'
+import { FailingStatusRequestHook } from './FailingStatusRequestHook'
 import { FastifyStatusOptions } from './FastifyStatusOptions'
 import { Status } from './Status'
 import { StatusCheckerFunction } from './StatusCheckerFunction'
@@ -6,6 +7,14 @@ import { StatusCheckerFunction } from './StatusCheckerFunction'
 const DEFAULT_STATUS_PATH = '/status'
 const SERVICE_UNAVAILABLE = 503
 const OK = 200
+
+const DEFAULT_FAILING_STATUS_REQUEST_HOOK: FailingStatusRequestHook = async function defaultFailingStatusRequestHook(
+  request: any,
+  reply: any
+) {
+  request.log.warning('Cannot serve request because the service is failing.')
+  reply.code(SERVICE_UNAVAILABLE)
+}
 
 const DEFAULT_STATUS_CHECKER: StatusCheckerFunction = function defaultStatusChecker(
   healthcheckResults: Record<string, Status>
@@ -38,6 +47,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
 
   const isRouteExposed = options?.route?.expose
   const routePath = options?.route?.path || DEFAULT_STATUS_PATH
+  const failingStatusRequestHook = options.failingStatusRequestHook || DEFAULT_FAILING_STATUS_REQUEST_HOOK
   if (isRouteExposed) {
     fastify.log.info('Exposing Fastify Status at %s', routePath)
 
@@ -81,13 +91,11 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
   function onRequest(request: any, reply: any, next: any) {
     if (state.status === Status.FAILING) {
       if (!isRouteExposed || request.url !== routePath) {
-        request.log.warning('Cannot serve request because the service is failing.')
-        reply.code(SERVICE_UNAVAILABLE)
-        return
+        failingStatusRequestHook(request, reply, next)
       }
+    } else {
+      next()
     }
-
-    next()
   }
 
   next()
