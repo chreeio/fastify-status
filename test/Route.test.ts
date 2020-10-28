@@ -12,8 +12,8 @@ describe('Route Checks', () => {
 
     // When
     const response = await app.inject({
-        method: 'GET',
-        url: '/status',
+      method: 'GET',
+      url: '/status',
     })
 
     // Then
@@ -26,9 +26,9 @@ describe('Route Checks', () => {
     // Given
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
-        }
+      route: {
+        expose: true,
+      },
     })
 
     // When
@@ -48,10 +48,10 @@ describe('Route Checks', () => {
     const customStatusPath = '/custom/status'
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true,
-            path: customStatusPath
-        }
+      route: {
+        expose: true,
+        path: customStatusPath,
+      },
     })
 
     // When
@@ -60,9 +60,9 @@ describe('Route Checks', () => {
       url: customStatusPath,
     })
     const responseOnDefaultPath = await app.inject({
-        method: 'GET',
-        url: '/status',
-    }) 
+      method: 'GET',
+      url: '/status',
+    })
 
     // Then
     expect(responseOnCustomPath.statusCode).toBe(200)

@@ -9,21 +9,21 @@ describe('Overall Status Calculator', () => {
     // Given
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
+      route: {
+        expose: true,
+      },
+      health: {
+        checks: {
+          ok: () => Promise.resolve(Status.OK),
+          degraded: () => Promise.resolve(Status.DEGRADED),
         },
-        health: {
-            checks: {
-                ok: () => Promise.resolve(Status.OK),
-                degraded: () => Promise.resolve(Status.DEGRADED)
-            }
-        },
+      },
     })
 
     // When
     const response = await app.inject({
-        method: 'GET',
-        url: '/status'
+      method: 'GET',
+      url: '/status',
     })
 
     const body = JSON.parse(response.body)
@@ -38,22 +38,22 @@ describe('Overall Status Calculator', () => {
     // Given
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
+      route: {
+        expose: true,
+      },
+      health: {
+        checks: {
+          ok: () => Promise.resolve(Status.OK),
+          degraded: () => Promise.resolve(Status.DEGRADED),
+          failing: () => Promise.resolve(Status.FAILING),
         },
-        health: {
-            checks: {
-                ok: () => Promise.resolve(Status.OK),
-                degraded: () => Promise.resolve(Status.DEGRADED),
-                failing: () => Promise.resolve(Status.FAILING)
-            }
-        },
+      },
     })
 
     // When
     const response = await app.inject({
-        method: 'GET',
-        url: '/status'
+      method: 'GET',
+      url: '/status',
     })
 
     const body = JSON.parse(response.body)
@@ -68,20 +68,20 @@ describe('Overall Status Calculator', () => {
     // Given
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
+      route: {
+        expose: true,
+      },
+      health: {
+        checks: {
+          ok: () => Promise.reject(new Error()),
         },
-        health: {
-            checks: {
-                ok: () => Promise.reject(new Error()),
-            }
-        },
+      },
     })
 
     // When
     const response = await app.inject({
-        method: 'GET',
-        url: '/status'
+      method: 'GET',
+      url: '/status',
     })
 
     const body = JSON.parse(response.body)

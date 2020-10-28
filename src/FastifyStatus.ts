@@ -9,7 +9,9 @@ const SERVICE_UNAVAILABLE = 503
 const OK = 200
 
 const DEFAULT_FAILING_STATUS_REQUEST_HOOK: FailingStatusRequestHook = async function defaultFailingStatusRequestHook(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   request: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   reply: any
 ) {
   request.log.warn('Cannot serve request because the service is failing.')

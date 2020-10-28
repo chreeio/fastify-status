@@ -10,17 +10,17 @@ describe('Failing Status Request Hook', () => {
     const app = createNewAppWithHelloEndpoint()
     const failingStatusRequestHook = jest.fn()
     await app.register(fastifyStatus, {
-        failingStatusRequestHook
+      failingStatusRequestHook,
     })
 
     // When
     await app.inject({
-        method: HELLO_METHOD,
-        url: HELLO_PATH
+      method: HELLO_METHOD,
+      url: HELLO_PATH,
     })
 
     // Then
-    expect(failingStatusRequestHook).toBeCalledTimes(0);
+    expect(failingStatusRequestHook).toBeCalledTimes(0)
 
     await app.close()
   })
@@ -29,26 +29,26 @@ describe('Failing Status Request Hook', () => {
     // Given
     const app = createNewAppWithHelloEndpoint()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
+      route: {
+        expose: true,
+      },
+      health: {
+        updateInterval: 500,
+        async overallStatusCalculator() {
+          return Status.FAILING
         },
-        health: {
-            updateInterval: 500,
-            async overallStatusCalculator() {
-                return Status.FAILING
-            }
-        }
+      },
     })
 
     // When
     await delay(750)
     const response = await app.inject({
-        method: HELLO_METHOD,
-        url: HELLO_PATH
+      method: HELLO_METHOD,
+      url: HELLO_PATH,
     })
 
     // Then
-    expect(response.statusCode).toBe(503);
+    expect(response.statusCode).toBe(503)
 
     await app.close()
   })
@@ -58,27 +58,27 @@ describe('Failing Status Request Hook', () => {
     const app = createNewAppWithHelloEndpoint()
     const failingStatusRequestHook = jest.fn(() => Promise.resolve())
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
+      route: {
+        expose: true,
+      },
+      health: {
+        updateInterval: 500,
+        async overallStatusCalculator() {
+          return Status.FAILING
         },
-        health: {
-            updateInterval: 500,
-            async overallStatusCalculator() {
-                return Status.FAILING
-            }
-        },
-        failingStatusRequestHook
+      },
+      failingStatusRequestHook,
     })
 
     // When
     await delay(750)
     await app.inject({
-        method: HELLO_METHOD,
-        url: HELLO_PATH
+      method: HELLO_METHOD,
+      url: HELLO_PATH,
     })
 
     // Then
-    expect(failingStatusRequestHook).toBeCalledTimes(1);
+    expect(failingStatusRequestHook).toBeCalledTimes(1)
 
     await app.close()
   })

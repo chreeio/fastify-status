@@ -9,21 +9,21 @@ describe('Custom Properties', () => {
     // Given
     const app = createNewApp()
     await app.register(fastifyStatus, {
-        route: {
-            expose: true
-        },
-        customProperties: {
-            literal: 'Hello, World!',
-            object: {},
-            array: [],
-            fn: () => 12
-        }
+      route: {
+        expose: true,
+      },
+      customProperties: {
+        literal: 'Hello, World!',
+        object: {},
+        array: [],
+        fn: () => 12,
+      },
     })
 
     // When
     const response = await app.inject({
-        method: 'GET',
-        url: '/status'
+      method: 'GET',
+      url: '/status',
     })
 
     const body = JSON.parse(response.body)
