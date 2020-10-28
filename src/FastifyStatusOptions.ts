@@ -57,7 +57,7 @@ export interface FastifyStatusOptions {
   /**
    * A Fastify onRequest hook (https://www.fastify.io/docs/latest/Hooks/#onrequest) which is executed on
    * each request if the current overall health of the service is `failing`.
-   * 
+   *
    * Note, that this hook is only registered if there's an update interval set for the health checks.
    *
    * By default, this hook will return `503 - Service Unavailable` to every request.
