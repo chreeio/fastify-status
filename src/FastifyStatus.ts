@@ -2,7 +2,7 @@ import { CustomPropertyObject } from './CustomProperty'
 import { FailingStatusRequestHook } from './FailingStatusRequestHook'
 import { FastifyStatusOptions } from './FastifyStatusOptions'
 import { Status } from './Status'
-import { StatusCheckerFunction } from './StatusCheckerFunction'
+import { OverallStatusCalculatorFunction } from './OverallStatusCalculatorFunction'
 
 const DEFAULT_STATUS_PATH = '/status'
 const SERVICE_UNAVAILABLE = 503
@@ -16,7 +16,7 @@ const DEFAULT_FAILING_STATUS_REQUEST_HOOK: FailingStatusRequestHook = async func
   reply.code(SERVICE_UNAVAILABLE)
 }
 
-const DEFAULT_STATUS_CHECKER: StatusCheckerFunction = function defaultStatusChecker(
+const DEFAULT_OVERALL_STATUS_CALCULATOR: OverallStatusCalculatorFunction = function defaultOverallStatusCalculator(
   healthcheckResults: Record<string, Status>
 ): Promise<Status> {
   let overallStatus = Status.OK
@@ -45,13 +45,15 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
     startedAt: startedAt(),
   }
 
-  const isRouteExposed = options?.route?.expose
-  const routePath = options?.route?.path || DEFAULT_STATUS_PATH
+  const isRouteExposed = options.route?.expose
+  const routePath = options.route?.path || DEFAULT_STATUS_PATH
   const failingStatusRequestHook = options.failingStatusRequestHook || DEFAULT_FAILING_STATUS_REQUEST_HOOK
+  const overallStatusCalculator = options.health?.overallStatusCalculator || DEFAULT_OVERALL_STATUS_CALCULATOR
+
   if (isRouteExposed) {
     fastify.log.info('Exposing Fastify Status at %s', routePath)
 
-    const customOptions = options?.route?.customOptions || {}
+    const customOptions = options.route?.customOptions || {}
 
     fastify.route({
       ...customOptions,
@@ -61,11 +63,11 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
       async handler(request: any, reply: any) {
         request.log.info('Fastify Status endpoint called.')
 
-        if (!options?.health?.updateInterval || !state.status) {
+        if (!options.health?.updateInterval || !state.status) {
           await performHealthcheck()
         }
 
-        if (options?.customProperties) {
+        if (options.customProperties) {
           await resolveCustomProperties()
         }
 
@@ -77,12 +79,12 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
   }
 
   let healthcheckTimer: NodeJS.Timeout | undefined
-  if (options?.health?.updateInterval) {
+  if (options.health?.updateInterval) {
     healthcheckTimer = setInterval(performHealthcheck, options.health.updateInterval)
 
     fastify.addHook('onClose', onClose)
 
-    if (options?.health?.unavailableWhenFailing) {
+    if (options.health?.unavailableWhenFailing) {
       fastify.addHook('onRequest', onRequest)
     }
   }
@@ -124,7 +126,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
   async function performHealthcheck() {
     fastify.log.info('Fastify Status is performing healthchecks.')
 
-    const checks = options?.health?.checks || {}
+    const checks = options.health?.checks || {}
 
     const result: Record<string, Status> = {}
 
@@ -136,7 +138,7 @@ export default function FastifyStatus(fastify: any, options: Partial<FastifyStat
       }
     }
 
-    state.status = await (options?.health?.statusChecker || DEFAULT_STATUS_CHECKER)(result)
+    state.status = await overallStatusCalculator(result)
 
     fastify.log.info('Fastify Status healthcheck finished, status: %s', state.status)
 

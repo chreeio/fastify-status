@@ -1,6 +1,6 @@
 import { CustomPropertyObject } from './CustomProperty'
 import { HealthcheckFunction } from './HealthcheckFunction'
-import { StatusCheckerFunction } from './StatusCheckerFunction'
+import { OverallStatusCalculatorFunction } from './OverallStatusCalculatorFunction'
 import { FailingStatusRequestHook } from './FailingStatusRequestHook'
 
 export interface FastifyStatusOptions {
@@ -13,7 +13,7 @@ export interface FastifyStatusOptions {
     updateInterval: number | undefined
     unavailableWhenFailing: boolean
     checks: Record<string, HealthcheckFunction>
-    statusChecker: StatusCheckerFunction
+    overallStatusCalculator: OverallStatusCalculatorFunction
   }>
   failingStatusRequestHook: FailingStatusRequestHook
   version: Record<string, string>
