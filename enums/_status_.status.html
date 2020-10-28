@@ -69,6 +69,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Enumeration of possible status values for service health.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -92,9 +99,17 @@
 					<div class="tsd-signature tsd-kind-icon">DEGRADED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;degraded&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d141216/src/Status.ts#L3">Status.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d4b9a22/src/Status.ts#L18">Status.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The service might not be able to meet every requirement, but is able to fulfill its role.</p>
+						</div>
+						<p>For example, if every database query is required to finish under 250 milliseconds, then
+							we can set the status of the database connection to degraded if recent queries take longer
+						than that.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="failing" class="tsd-anchor"></a>
@@ -102,9 +117,16 @@
 					<div class="tsd-signature tsd-kind-icon">FAILING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;failing&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d141216/src/Status.ts#L4">Status.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d4b9a22/src/Status.ts#L26">Status.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The service is not able to continue its job.</p>
+						</div>
+						<p>For example, if the underlying database has gone offline, then we can set the status of
+						the database connection to failing.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="ok" class="tsd-anchor"></a>
@@ -112,9 +134,15 @@
 					<div class="tsd-signature tsd-kind-icon">OK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ok&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d141216/src/Status.ts#L2">Status.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/chreeio/fastify-status/blob/d4b9a22/src/Status.ts#L9">Status.ts:9</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The service is up and running correctly, satisfying the functional and
+							non-functional requirements.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
