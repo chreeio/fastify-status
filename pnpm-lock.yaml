@@ -12,6 +12,7 @@ devDependencies:
   fastify: registry.npmjs.org/fastify/3.7.0
   husky: registry.npmjs.org/husky/4.2.5
   jest: registry.npmjs.org/jest/26.1.0
+  pino-pretty: registry.npmjs.org/pino-pretty/4.3.0
   prettier: registry.npmjs.org/prettier/2.0.5
   ts-jest: registry.npmjs.org/ts-jest/26.1.1_jest@26.1.0+typescript@3.9.6
   ts-node: registry.npmjs.org/ts-node/8.10.2_typescript@3.9.6
@@ -678,6 +679,14 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/@commitlint/types/-/types-9.0.1.tgz'
     version: 9.0.1
+  registry.npmjs.org/@hapi/bourne/2.0.0:
+    dev: true
+    name: '@hapi/bourne'
+    resolution:
+      integrity: sha512-WEezM1FWztfbzqIUbsDzFRVMxSoLy3HugVcux6KDDtTqzPsLE8NDRHfXvev66aH1i2oOKKar3/XDjbvh/OUBdg==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/@hapi/bourne/-/bourne-2.0.0.tgz'
+    version: 2.0.0
   registry.npmjs.org/@istanbuljs/load-nyc-config/1.1.0:
     dependencies:
       camelcase: registry.npmjs.org/camelcase/5.3.1
@@ -1433,6 +1442,18 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.2.1.tgz'
     version: 4.2.1
+  registry.npmjs.org/ansi-styles/4.3.0:
+    dependencies:
+      color-convert: registry.npmjs.org/color-convert/2.0.1
+    dev: true
+    engines:
+      node: '>=8'
+    name: ansi-styles
+    resolution:
+      integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz'
+    version: 4.3.0
   registry.npmjs.org/anymatch/2.0.0:
     dependencies:
       micromatch: registry.npmjs.org/micromatch/3.1.10
@@ -1483,6 +1504,21 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz'
     version: 1.0.10
+  registry.npmjs.org/args/5.0.1:
+    dependencies:
+      camelcase: registry.npmjs.org/camelcase/5.0.0
+      chalk: registry.npmjs.org/chalk/2.4.2
+      leven: registry.npmjs.org/leven/2.1.0
+      mri: registry.npmjs.org/mri/1.1.4
+    dev: true
+    engines:
+      node: '>= 6.0.0'
+    name: args
+    resolution:
+      integrity: sha512-1kqmFCFsPffavQFGt8OxJdIcETti99kySRUPMpOhaGjL6mRJn8HFU1OxKY5bMqfZKUwTQc1mZkAjmGYaVOHFtQ==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/args/-/args-5.0.1.tgz'
+    version: 5.0.1
   registry.npmjs.org/arr-diff/4.0.0:
     dev: true
     engines:
@@ -1940,6 +1976,16 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/camelcase/-/camelcase-4.1.0.tgz'
     version: 4.1.0
+  registry.npmjs.org/camelcase/5.0.0:
+    dev: true
+    engines:
+      node: '>=6'
+    name: camelcase
+    resolution:
+      integrity: sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/camelcase/-/camelcase-5.0.0.tgz'
+    version: 5.0.0
   registry.npmjs.org/camelcase/5.3.1:
     dev: true
     engines:
@@ -2009,8 +2055,8 @@ packages:
     version: 3.0.0
   registry.npmjs.org/chalk/4.1.0:
     dependencies:
-      ansi-styles: registry.npmjs.org/ansi-styles/4.2.1
-      supports-color: registry.npmjs.org/supports-color/7.1.0
+      ansi-styles: registry.npmjs.org/ansi-styles/4.3.0
+      supports-color: registry.npmjs.org/supports-color/7.2.0
     dev: true
     engines:
       node: '>=10'
@@ -2406,6 +2452,14 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/data-urls/-/data-urls-2.0.0.tgz'
     version: 2.0.0
+  registry.npmjs.org/dateformat/3.0.3:
+    dev: true
+    name: dateformat
+    resolution:
+      integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/dateformat/-/dateformat-3.0.3.tgz'
+    version: 3.0.3
   registry.npmjs.org/debug/2.6.9:
     dependencies:
       ms: registry.npmjs.org/ms/2.0.0
@@ -4939,6 +4993,26 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/jest/-/jest-26.1.0.tgz'
     version: 26.1.0
+  registry.npmjs.org/jmespath/0.15.0:
+    dev: true
+    engines:
+      node: '>= 0.6.0'
+    name: jmespath
+    resolution:
+      integrity: sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/jmespath/-/jmespath-0.15.0.tgz'
+    version: 0.15.0
+  registry.npmjs.org/joycon/2.2.5:
+    dev: true
+    engines:
+      node: '>=6'
+    name: joycon
+    resolution:
+      integrity: sha512-YqvUxoOcVPnCp0VU1/56f+iKSdvIRJYPznH22BdXV3xMk75SFXhWeJkZ8C9XxUWt1b5x2X1SxuFygW1U0FmkEQ==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/joycon/-/joycon-2.2.5.tgz'
+    version: 2.2.5
   registry.npmjs.org/js-tokens/4.0.0:
     dev: true
     name: js-tokens
@@ -5162,6 +5236,16 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz'
     version: 3.0.3
+  registry.npmjs.org/leven/2.1.0:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    name: leven
+    resolution:
+      integrity: sha1-wuep93IJTe6dNCAq6KzORoeHVYA=
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/leven/-/leven-2.1.0.tgz'
+    version: 2.1.0
   registry.npmjs.org/leven/3.1.0:
     dev: true
     engines:
@@ -5646,6 +5730,16 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz'
     version: 1.0.4
+  registry.npmjs.org/mri/1.1.4:
+    dev: true
+    engines:
+      node: '>=4'
+    name: mri
+    resolution:
+      integrity: sha512-6y7IjGPm8AzlvoUrwAaw1tLnUBudaS3752vcd8JtrpGGQn+rXIe63LFVHm/YMwtqAuh+LJPCFdlLYPWM1nYn6w==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/mri/-/mri-1.1.4.tgz'
+    version: 1.1.4
   registry.npmjs.org/ms/2.0.0:
     dev: true
     name: ms
@@ -6174,6 +6268,27 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/pify/-/pify-3.0.0.tgz'
     version: 3.0.0
+  registry.npmjs.org/pino-pretty/4.3.0:
+    dependencies:
+      '@hapi/bourne': registry.npmjs.org/@hapi/bourne/2.0.0
+      args: registry.npmjs.org/args/5.0.1
+      chalk: registry.npmjs.org/chalk/4.1.0
+      dateformat: registry.npmjs.org/dateformat/3.0.3
+      fast-safe-stringify: registry.npmjs.org/fast-safe-stringify/2.0.7
+      jmespath: registry.npmjs.org/jmespath/0.15.0
+      joycon: registry.npmjs.org/joycon/2.2.5
+      pump: registry.npmjs.org/pump/3.0.0
+      readable-stream: registry.npmjs.org/readable-stream/3.6.0
+      split2: registry.npmjs.org/split2/3.2.2
+      strip-json-comments: registry.npmjs.org/strip-json-comments/3.1.1
+    dev: true
+    hasBin: true
+    name: pino-pretty
+    resolution:
+      integrity: sha512-uEc9SUCCGVEs0goZvyznKXBHtI1PNjGgqHviJHxOCEFEWZN6Z/IQKv5pO9gSdm/b+WfX+/dfheWhtZUyScqjlQ==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/pino-pretty/-/pino-pretty-4.3.0.tgz'
+    version: 4.3.0
   registry.npmjs.org/pino-std-serializers/2.5.0:
     dev: true
     name: pino-std-serializers
@@ -7330,6 +7445,16 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/split2/-/split2-2.2.0.tgz'
     version: 2.2.0
+  registry.npmjs.org/split2/3.2.2:
+    dependencies:
+      readable-stream: registry.npmjs.org/readable-stream/3.6.0
+    dev: true
+    name: split2
+    resolution:
+      integrity: sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/split2/-/split2-3.2.2.tgz'
+    version: 3.2.2
   registry.npmjs.org/sprintf-js/1.0.3:
     dev: true
     name: sprintf-js
@@ -7583,6 +7708,18 @@ packages:
       registry: 'https://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/supports-color/-/supports-color-7.1.0.tgz'
     version: 7.1.0
+  registry.npmjs.org/supports-color/7.2.0:
+    dependencies:
+      has-flag: registry.npmjs.org/has-flag/4.0.0
+    dev: true
+    engines:
+      node: '>=8'
+    name: supports-color
+    resolution:
+      integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
+      registry: 'https://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz'
+    version: 7.2.0
   registry.npmjs.org/supports-hyperlinks/2.1.0:
     dependencies:
       has-flag: registry.npmjs.org/has-flag/4.0.0
@@ -8567,6 +8704,7 @@ specifiers:
   fastify-plugin: 2.3.4
   husky: 4.2.5
   jest: 26.1.0
+  pino-pretty: 4.3.0
   prettier: 2.0.5
   ts-jest: 26.1.1
   ts-node: 8.10.2
