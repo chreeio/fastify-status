@@ -43,9 +43,9 @@
     "url": "git+https://github.com/chreeio/fastify-status.git"
   },
   "keywords": [
-    "liquid",
-    "template",
-    "templating"
+    "fastify",
+    "fastify-plugin",
+    "status"
   ],
   "author": "Chree Development Team",
   "license": "MIT",
