@@ -17,7 +17,7 @@ npm i @chreeio/fastify-status
   * HTTP endpoint serving overall health, custom health checks, version and custom properties.
     * Can be turned off.
     * Customizable path and [Fastify route options](https://www.fastify.io/docs/latest/Routes/#full-declaration).
-  * Three-valued (`ok`, `degraded`, `failing`) overall health with custom health checks.
+  * Three-valued (`ok`, `degraded`, `failing`) overall health calculated from custom health checks.
   * Health checks can execute scheduled or on-demand when service status is requested via HTTP.
   * Customizable [Fastify onRequest hook](https://www.fastify.io/docs/latest/Hooks/#onrequest) executed when the overall health is `failing`.
 
