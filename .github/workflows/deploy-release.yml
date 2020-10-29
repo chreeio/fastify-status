@@ -70,7 +70,7 @@ jobs:
 
     - name: Deploy to the GitHub Package registry
       run: |
-        pnpm publish --no-git-checks
+        pnpm publish --no-git-checks --access=public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -107,7 +107,7 @@ jobs:
 
     - name: Deploy to npmjs
       run: |
-        pnpm publish --no-git-checks
+        pnpm publish --no-git-checks --access=public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.CHREE_PUSH_NPMJS_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.CHREE_PUSH_NPMJS_TOKEN }}
