@@ -107,44 +107,50 @@ app.register(fastifyStatus, {
 					<h2>Options</h2>
 				</a>
 				<p>When registering <code>fastify-status</code>, you can set the following options. Please note, that each setting is optional.</p>
-				<ul>
-					<li><strong>route.expose</strong><ul>
-							<li>Whether to expose an HTTP endpoint serving status information or not. Set to <code>false</code> by default.</li>
-						</ul>
-					</li>
-					<li><strong>route.path</strong><ul>
-							<li>The path of the HTTP status endpoint. Set to <code>/status</code> by default.</li>
-						</ul>
-					</li>
-					<li><strong>route.customOptions</strong><ul>
-							<li>Additional customization for the HTTP status endpoint. Please refer to <a href="https://www.fastify.io/docs/latest/Routes/#routes-option">https://www.fastify.io/docs/latest/Routes/#routes-option</a> regarding the permitted HTTP route options.</li>
-						</ul>
-					</li>
-					<li><strong>health.updateInterval</strong><ul>
-							<li>The interval between subsequent health checks in milliseconds. If not set, then health checks will be performed on each request to the exposed status endpoint. By default, this setting is not set.</li>
-						</ul>
-					</li>
-					<li><strong>health.checks</strong><ul>
-							<li>An arbitrary number of custom health checks. If an update interval is set, then these checks will be scheduled. Otherwise, they are executed on each request to the status endpoint.</li>
-						</ul>
-					</li>
-					<li><strong>health.overallStatusCalculator</strong><ul>
-							<li>A function calculating the overall health of the service using the values provided by the <code>checks</code>. By default, this function sets the overall health to <code>failing</code> if there&#39;s a <code>failing</code> check and <code>degraded</code> if there&#39;s a <code>degraded</code> check.</li>
-						</ul>
-					</li>
-					<li><strong>failingStatusRequestHook</strong><ul>
-							<li>A Fastify onRequest hook (<a href="https://www.fastify.io/docs/latest/Hooks/#onrequest">https://www.fastify.io/docs/latest/Hooks/#onrequest</a>) which is executed on each request if the current overall health of the service is <code>failing</code>. Note, that this hook is only registered if there&#39;s an update interval set for the health checks. By default, this hook will return <code>503 - Service Unavailable</code> to every request.</li>
-						</ul>
-					</li>
-					<li><strong>version</strong><ul>
-							<li>A string to string mapping of version information.</li>
-						</ul>
-					</li>
-					<li><strong>customProperties</strong><ul>
-							<li>Any additional custom properties. These are going to be appended to the response of the status endpoint.</li>
-						</ul>
-					</li>
-				</ul>
+				<table>
+					<thead>
+						<tr>
+							<th>Option</th>
+							<th>Descripton</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><strong>route.expose</strong></td>
+							<td>Whether to expose an HTTP endpoint serving status information or not. Set to <code>false</code> by default.</td>
+						</tr>
+						<tr>
+							<td><strong>route.path</strong></td>
+							<td>The path of the HTTP status endpoint. Set to <code>/status</code> by default.</td>
+						</tr>
+						<tr>
+							<td><strong>route.customOptions</strong></td>
+							<td>Additional customization for the HTTP status endpoint. Please refer to <a href="https://www.fastify.io/docs/latest/Routes/#routes-option">https://www.fastify.io/docs/latest/Routes/#routes-option</a> regarding the permitted HTTP route options.</td>
+						</tr>
+						<tr>
+							<td><strong>health.updateInterval</strong></td>
+							<td>The interval between subsequent health checks in milliseconds. If not set, then health checks will be performed on each request to the exposed status endpoint. By default, this setting is not set.</td>
+						</tr>
+						<tr>
+							<td><strong>health.checks</strong></td>
+							<td>An arbitrary number of custom health checks. If an update interval is set, then these checks will be scheduled. Otherwise, they are executed on each request to the status endpoint.</td>
+						</tr>
+						<tr>
+							<td><strong>health.overallStatusCalculator</strong></td>
+							<td>A function calculating the overall health of the service using the values provided by the <code>checks</code>. By default, this function sets the overall health to <code>failing</code> if there&#39;s a <code>failing</code> check and <code>degraded</code> if there&#39;s a <code>degraded</code> check.</td>
+						</tr>
+						<tr>
+							<td><strong>failingStatusRequestHook</strong></td>
+							<td>A Fastify onRequest hook (<a href="https://www.fastify.io/docs/latest/Hooks/#onrequest">https://www.fastify.io/docs/latest/Hooks/#onrequest</a>) which is executed on each request if the current overall health of the service is <code>failing</code>. Note, that this hook is only registered if there&#39;s an update interval set for the health checks. By default, this hook will return <code>503 - Service Unavailable</code> to every request.</td>
+						</tr>
+						<tr>
+							<td><strong>version</strong></td>
+							<td>A string to string mapping of version information.</td>
+						</tr>
+						<tr>
+							<td><strong>customProperties</strong></td>
+							<td>Any additional custom properties. These are going to be appended to the response of the status endpoint.</td>
+						</tr>
+				</tbody></table>
 				<a href="#acknowledgements" id="acknowledgements" style="color: inherit; text-decoration: none;">
 					<h2>Acknowledgements</h2>
 				</a>
