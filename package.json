@@ -10,7 +10,6 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "pnpm run clean && tsc",
-    "preinstall": "npx only-allow pnpm",
     "test": "jest --passWithNoTests --coverage",
     "test:watch": "jest --passWithNoTests --watch",
     "lint": "eslint . --ext .ts",
