@@ -48,7 +48,7 @@
     "templating"
   ],
   "author": "Chree Development Team",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chreeio/fastify-status/issues"
   },
